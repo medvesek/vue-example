@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Build
+        run: |
+          pnpm install
+          pnpm build
+
+      - name: Netlify
+        uses: medvesek/github-actions/actions/netlify-deploy@master
+        with:
+          token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          dir: dist
