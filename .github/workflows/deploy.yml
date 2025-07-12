@@ -29,8 +29,10 @@ jobs:
           pnpm install
           pnpm build
 
-      - name: Netlify
-        uses: medvesek/github-actions/actions/netlify-deploy@master
+      - name: Deploy
+        uses: medvesek/github-actions/actions/deploy-static@master
         with:
-          token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          cloudflare_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           dir: dist
+          domain: 'verygood.ajmuht.eu'
