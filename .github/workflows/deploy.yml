@@ -35,4 +35,4 @@ jobs:
           netlify_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           cloudflare_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           dir: dist
-          domain: 'verygood.ajmuht.eu'
+          domain: 'great.ajmuht.eu'
